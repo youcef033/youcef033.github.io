@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BENAMARY Youcef — e-Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0c10;
+      --bg2: #111318;
+      --bg3: #171a21;
+      --accent: #00d4ff;
+      --accent2: #7b5ea7;
+      --text: #e8eaf0;
+      --muted: #8a8fa8;
+      --card: #14161e;
+      --border: rgba(255,255,255,0.07);
+      --glow: 0 0 30px rgba(0,212,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 10px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 3rem;
+      background: rgba(11,12,16,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #accueil {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image: linear-gradient(rgba(0,212,255,0.5) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,212,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+    }
+    .hero-orb-1 {
+      width: 500px; height: 500px;
+      background: rgba(0,212,255,0.07);
+      top: -150px; right: -100px;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: rgba(123,94,167,0.08);
+      bottom: -100px; left: -50px;
+    }
+    .hero-content { position: relative; max-width: 900px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 0.4rem 1rem; border-radius: 100px;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero-name span { color: var(--accent); }
+    .hero-subtitle {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 0.8rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-desc {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: #00b8d9; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,212,255,0.3); }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      animation: fadeUp 0.7s ease 0.5s both;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem; font-weight: 800;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .section-tag::before { content: '//'; opacity: 0.5; }
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
+    h2.section-title em { color: var(--accent); font-style: normal; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+    /* ── PROFIL ── */
+    #profil { background: var(--bg2); }
+    .profil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .profil-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 0.95rem; }
+    .profil-info { display: flex; flex-direction: column; gap: 1.2rem; }
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .info-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .info-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .info-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+
+    /* ── FORMATIONS ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem; top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.2);
+      transform: translateX(-4px);
+    }
+    .timeline-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .timeline-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .timeline-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .timeline-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── STAGES ── */
+    #stage { background: var(--bg2); }
+    .stage-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .stage-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stage-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+    .stage-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .stage-num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: rgba(0,212,255,0.08); line-height: 1; margin-bottom: 0.5rem; }
+    .stage-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .stage-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .stage-company { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .stage-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .stage-tasks li {
+      font-size: 0.83rem; color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .stage-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+    .stage-report-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-size: 0.8rem; color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .stage-report-link:hover { background: rgba(0,212,255,0.08); }
+
+    /* ── COMPÉTENCES ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      transition: border-color 0.3s;
+    }
+    .skill-card:hover { border-color: rgba(0,212,255,0.25); }
+    .skill-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .skill-icon {
+      width: 36px; height: 36px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .skill-category { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.06); }
+
+    /* ── PROJETS ── */
+    #projets { background: var(--bg2); }
+    .projets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .projet-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+    .projet-card:hover { border-color: rgba(123,94,167,0.4); transform: translateY(-3px); }
+    .projet-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .projet-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .projet-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .projet-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .stack-tag {
+      font-size: 0.7rem;
+      background: rgba(123,94,167,0.1);
+      border: 1px solid rgba(123,94,167,0.2);
+      color: #a78bda;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    /* ── VEILLE ── */
+    .veille-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+      max-width: 800px;
+    }
+    .veille-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .veille-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.8; }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact { text-align: center; }
+    .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-top: 2rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-size: 0.88rem; font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: all 0.25s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.05); }
+    footer {
+      padding: 2rem 3rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .profil-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      #accueil { padding: 7rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#accueil" class="nav-logo">.youcef</a>
+  <ul class="nav-links">
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#stage">Stage</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="accueil">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">BTS SIO · Option SISR · 2ème année</div>
+    <h1 class="hero-name">BENAMARY<br><span>Youcef</span></h1>
+    <p class="hero-subtitle">Étudiant en informatique — Systèmes & Réseaux</p>
+    <p class="hero-desc">
+      Passionné par les infrastructures informatiques, les systèmes et les réseaux, je développe mes compétences techniques à travers ma formation BTS SIO SISR et mes stages en entreprise.
+    </p>
+    <div class="hero-actions">
+      <a href="#stage" class="btn btn-primary">📄 Voir mon stage</a>
+      <a href="#competences" class="btn btn-ghost">🛠 Mes compétences</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Stages réalisés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Domaines maîtrisés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">BTS</div>
+        <div class="stat-label">SIO SISR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROFIL -->
+<section id="profil">
+  <div class="section-inner">
+    <div class="section-tag">Qui suis-je</div>
+    <h2 class="section-title">Mon <em>Profil</em></h2>
+    <div class="profil-grid reveal">
+      <div class="profil-text">
+        <p>
+          Je m'appelle Youcef Benamary, étudiant en 2ème année de BTS SIO (Services Informatiques aux Organisations), spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
+        </p>
+        <p>
+          Mon parcours a débuté par un bac général spécialité mathématiques/NSI, suivi d'une orientation vers une licence MIAGE avant de me diriger vers le BTS SIO. J'ai également effectué un service civique au sein de la Mission Locale de Paris dans le domaine du sport.
+        </p>
+        <p>
+          Dans le cadre de mon BTS, j'ai eu l'opportunité d'effectuer deux stages : un premier en développement d'application web, et un second dans le domaine des systèmes et réseaux. Ces expériences m'ont permis de renforcer mes compétences techniques et ma capacité d'adaptation en environnement professionnel.
+        </p>
+      </div>
+      <div class="profil-info">
+        <div class="info-card">
+          <div class="info-icon">🎓</div>
+          <div>
+            <div class="info-label">Formation</div>
+            <div class="info-value">BTS SIO — Option SISR</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Localisation</div>
+            <div class="info-value">Paris, France</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">💼</div>
+          <div>
+            <div class="info-label">Disponibilité</div>
+            <div class="info-value">Ouvert aux opportunités</div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🌐</div>
+          <div>
+            <div class="info-label">Langues</div>
+            <div class="info-value">Français (natif) · Anglais (B1) · Arabe (A2)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMATIONS -->
+<section id="formations">
+  <div class="section-inner">
+    <div class="section-tag">Cursus</div>
+    <h2 class="section-title">Mes <em>Formations</em></h2>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-date">2023 — 2025</div>
+        <div class="timeline-title">BTS SIO — Option SISR</div>
+        <div class="timeline-sub">Lycée (Paris)</div>
+        <div class="timeline-desc">Administration des systèmes et réseaux · Cybersécurité · Virtualisation · Gestion de projet · Développement web</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2022 — 2023</div>
+        <div class="timeline-title">Licence MIAGE (partielle)</div>
+        <div class="timeline-sub">Université (France)</div>
+        <div class="timeline-desc">Méthodes Informatiques Appliquées à la Gestion des Entreprises. Réorientation vers le BTS SIO.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2019 — 2022</div>
+        <div class="timeline-title">Baccalauréat Général</div>
+        <div class="timeline-sub">Spécialités Mathématiques & NSI (Numérique et Sciences Informatiques)</div>
+        <div class="timeline-desc">Obtention du baccalauréat général avec spécialités orientées vers l'informatique et les mathématiques.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Bénévolat</div>
+        <div class="timeline-title">Service Civique — Mission Locale de Paris</div>
+        <div class="timeline-sub">Domaine du sport</div>
+        <div class="timeline-desc">Engagement volontaire au service des jeunes dans le domaine sportif au sein de la Mission Locale de Paris.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STAGE -->
+<section id="stage">
+  <div class="section-inner">
+    <div class="section-tag">Expériences</div>
+    <h2 class="section-title">Mes <em>Stages</em></h2>
+    <div class="stage-cards">
+
+      <div class="stage-card reveal">
+        <div class="stage-num">01</div>
+        <div class="stage-date">Stage · Développement Web</div>
+        <div class="stage-title">Développeur d'application web</div>
+        <div class="stage-company">📍 Entreprise — Paris, France</div>
+        <ul class="stage-tasks">
+          <li>Développement d'une application web (HTML/CSS/JS/PHP)</li>
+          <li>Gestion et requêtes en base de données SQL</li>
+          <li>Versioning avec Git</li>
+          <li>Rédaction de documentation technique</li>
+          <li>Intégration d'interfaces responsive</li>
+        </ul>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="stage-report-link">
+          📄 Rapport de stage
+        </a>
+      </div>
+
+      <div class="stage-card reveal">
+        <div class="stage-num">02</div>
+        <div class="stage-date">Stage · Systèmes & Réseaux</div>
+        <div class="stage-title">Administration systèmes & réseaux</div>
+        <div class="stage-company">📍 Entreprise — Paris, France</div>
+        <ul class="stage-tasks">
+          <li>Administration de postes sous Linux et Windows</li>
+          <li>Configuration réseau et pare-feu pfSense</li>
+          <li>Gestion des droits utilisateurs et sudoers</li>
+          <li>Installation et configuration de services réseau</li>
+          <li>Supervision avec GLPI et outils de monitoring</li>
+          <li>Rédaction de procédures techniques</li>
+        </ul>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport.pdf" target="_blank" class="stage-report-link">
+          📄 Rapport de stage
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPETENCES -->
+<section id="competences">
+  <div class="section-inner">
+    <div class="section-tag">Savoir-faire</div>
+    <h2 class="section-title">Mes <em>Compétences</em></h2>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🔒</div>
+          <div class="skill-category">Cybersécurité</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">RGPD</span>
+          <span class="tag">EBIOS</span>
+          <span class="tag">PIA</span>
+          <span class="tag">pfSense</span>
+          <span class="tag">Types d'attaques</span>
+          <span class="tag">Sensibilisation</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">💻</div>
+          <div class="skill-category">Développement</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
+          <span class="tag">PHP</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🖥️</div>
+          <div class="skill-category">Systèmes</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Linux (Ubuntu/Debian)</span>
+          <span class="tag">Bash</span>
+          <span class="tag">Windows Server</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">GLPI</span>
+          <span class="tag">VirtualBox</span>
+          <span class="tag">Kanboard</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-category">Réseaux</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Modèle OSI</span>
+          <span class="tag">TCP/IP</span>
+          <span class="tag">Sous-réseau</span>
+          <span class="tag">SNMP</span>
+          <span class="tag">SSH</span>
+          <span class="tag">Pare-feu</span>
+          <span class="tag">Squid (proxy)</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">📋</div>
+          <div class="skill-category">Gestion de projet</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Gantt Project</span>
+          <span class="tag">Méthode Agile</span>
+          <span class="tag">Scrum / Kanban</span>
+          <span class="tag">Cahier des charges</span>
+          <span class="tag">Cahier de test</span>
+          <span class="tag">Appels d'offres</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🤝</div>
+          <div class="skill-category">Savoir-être</div>
+        </div>
+        <div class="skill-tags">
+          <span class="tag">Travail d'équipe</span>
+          <span class="tag">Autonomie</span>
+          <span class="tag">Rigueur</span>
+          <span class="tag">Gestion du stress</span>
+          <span class="tag">Sens du contact</span>
+          <span class="tag">Ponctualité</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="section-inner">
+    <div class="section-tag">Réalisations</div>
+    <h2 class="section-title">Mes <em>Projets</em></h2>
+    <div class="projets-grid">
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">🌐</div>
+        <div class="projet-title">Application Web</div>
+        <div class="projet-desc">Développement d'une application web complète lors de mon stage, incluant front-end, back-end et base de données.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">HTML/CSS</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">SQL</span>
+          <span class="stack-tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">🔥</div>
+        <div class="projet-title">Configuration pare-feu pfSense</div>
+        <div class="projet-desc">Mise en place et configuration d'un pare-feu pfSense pour sécuriser l'infrastructure réseau d'une entreprise.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">pfSense</span>
+          <span class="stack-tag">TCP/IP</span>
+          <span class="stack-tag">VLAN</span>
+        </div>
+      </div>
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">📦</div>
+        <div class="projet-title">GLPI — Gestion de parc</div>
+        <div class="projet-desc">Installation et configuration de GLPI pour l'inventaire et la gestion des tickets d'incidents du parc informatique.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">GLPI</span>
+          <span class="stack-tag">Linux</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">🖥️</div>
+        <div class="projet-title">Virtualisation de serveurs</div>
+        <div class="projet-desc">Création et gestion de machines virtuelles sous VirtualBox pour simuler des infrastructures réseaux complètes.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">VirtualBox</span>
+          <span class="stack-tag">Ubuntu</span>
+          <span class="stack-tag">Windows Server</span>
+        </div>
+      </div>
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">🔑</div>
+        <div class="projet-title">Gestion des droits utilisateurs</div>
+        <div class="projet-desc">Mise en place de politiques de gestion des droits et des accès sur un système Linux avec sudoers.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">Linux</span>
+          <span class="stack-tag">Bash</span>
+          <span class="stack-tag">Sudoers</span>
+        </div>
+      </div>
+
+      <div class="projet-card reveal">
+        <div class="projet-icon">🕵️</div>
+        <div class="projet-title">Veille Cybersécurité</div>
+        <div class="projet-desc">Réalisation d'une veille technologique sur les menaces et techniques de cybersécurité actuelles.</div>
+        <div class="projet-stack">
+          <span class="stack-tag">RGPD</span>
+          <span class="stack-tag">EBIOS</span>
+          <span class="stack-tag">Veille</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag" style="justify-content:center">Me contacter</div>
+    <h2 class="section-title reveal">Restons en <em>contact</em></h2>
+    <p style="color:var(--muted); max-width:500px; margin:0 auto; font-size:0.95rem;" class="reveal">
+      N'hésitez pas à me contacter pour toute opportunité de stage, alternance ou collaboration dans le domaine des systèmes et réseaux.
+    </p>
+    <div class="contact-links reveal">
+      <a href="https://benamaryoucef.wordpress.com/linkedin/" target="_blank" class="contact-link">
+        💼 LinkedIn
+      </a>
+      <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="contact-link">
+        📄 Rapport de stage 1
+      </a>
+      <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport.pdf" target="_blank" class="contact-link">
+        📄 Rapport de stage 2
+      </a>
+      <a href="https://benamaryoucef.wordpress.com" target="_blank" class="contact-link">
+        🌐 e-Portfolio WordPress
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 BENAMARY Youcef — BTS SIO SISR · Fait avec ❤️</p>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
