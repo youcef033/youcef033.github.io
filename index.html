@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BENAMARY Youcef — e-Portfolio</title>
+  <title>BENAMAR Youcef — e-Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -409,8 +409,11 @@
   <ul class="nav-links">
     <li><a href="#profil">Profil</a></li>
     <li><a href="#formations">Formations</a></li>
-    <li><a href="#stage">Stage</a></li>
+    <li><a href="#stage">Stages</a></li>
     <li><a href="#competences">Compétences</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#procedures">Procédures</a></li>
+    <li><a href="#synthese">Synthèse</a></li>
     <li><a href="#projets">Projets</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -423,7 +426,7 @@
   <div class="hero-orb hero-orb-2"></div>
   <div class="hero-content">
     <div class="hero-tag">BTS SIO · Option SISR · 2ème année</div>
-    <h1 class="hero-name">BENAMARY<br><span>Youcef</span></h1>
+    <h1 class="hero-name">BENAMAR<br><span>Youcef</span></h1>
     <p class="hero-subtitle">Étudiant en informatique — Systèmes & Réseaux</p>
     <p class="hero-desc">
       Passionné par les infrastructures informatiques, les systèmes et les réseaux, je développe mes compétences techniques à travers ma formation BTS SIO SISR et mes stages en entreprise.
@@ -459,7 +462,7 @@
     <div class="profil-grid reveal">
       <div class="profil-text">
         <p>
-          Je m'appelle Youcef Benamary, étudiant en 2ème année de BTS SIO (Services Informatiques aux Organisations), spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
+          Je m'appelle Youcef Benamar, étudiant en 2ème année de BTS SIO (Services Informatiques aux Organisations), spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).
         </p>
         <p>
           Mon parcours a débuté par un bac général spécialité mathématiques/NSI, suivi d'une orientation vers une licence MIAGE avant de me diriger vers le BTS SIO. J'ai également effectué un service civique au sein de la Mission Locale de Paris dans le domaine du sport.
@@ -694,6 +697,115 @@
 
 <div class="divider"></div>
 
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <div class="section-tag">Diplômes & Badges</div>
+    <h2 class="section-title">Mes <em>Certifications</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-category">Cisco — Introduction to Packet Tracer</div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted);">Certification Cisco sur l'utilisation de Packet Tracer pour la simulation de réseaux informatiques.</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">📡</div>
+          <div class="skill-category">Cisco — Notions de base sur les réseaux</div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted);">Certification Cisco couvrant les fondamentaux des réseaux informatiques : protocoles, adressage et topologies.</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header">
+          <div class="skill-icon">🏅</div>
+          <div class="skill-category">Certification PIX</div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--muted);">Certification numérique PIX attestant des compétences numériques.</p>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/certification-pix-20260209.pdf" target="_blank" class="stage-report-link" style="margin-top:1rem;">📄 Voir le certificat</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCEDURES -->
+<section id="procedures" style="background:var(--bg2)">
+  <div class="section-inner">
+    <div class="section-tag">Documentation technique</div>
+    <h2 class="section-title">Mes <em>Procédures</em></h2>
+    <div class="stage-cards">
+
+      <div class="stage-card reveal">
+        <div class="stage-num">01</div>
+        <div class="stage-date">Virtualisation</div>
+        <div class="stage-title">Installation Proxmox VE</div>
+        <div class="stage-company">Sur base Debian 13</div>
+        <ul class="stage-tasks">
+          <li>Préparation de la machine Debian 13</li>
+          <li>Ajout du dépôt Proxmox et clé GPG</li>
+          <li>Installation de proxmox-ve et ifupdown2</li>
+          <li>Configuration du bridge réseau vmbr0</li>
+          <li>Accès à l'interface web sur le port 8006</li>
+        </ul>
+      </div>
+
+      <div class="stage-card reveal">
+        <div class="stage-num">02</div>
+        <div class="stage-date">Gestion de parc</div>
+        <div class="stage-title">Installation GLPI</div>
+        <div class="stage-company">Sur Debian avec Apache / MariaDB</div>
+        <ul class="stage-tasks">
+          <li>Installation Apache, PHP 8.2 et extensions</li>
+          <li>Création base MariaDB (glpidb / glpiuser)</li>
+          <li>Téléchargement et déploiement de GLPI</li>
+          <li>Configuration VirtualHost Apache</li>
+          <li>Finalisation via l'assistant web</li>
+        </ul>
+      </div>
+
+      <div class="stage-card reveal">
+        <div class="stage-num">03</div>
+        <div class="stage-date">Sécurité réseau</div>
+        <div class="stage-title">Installation pfSense</div>
+        <div class="stage-company">Pare-feu / Routeur open-source</div>
+        <ul class="stage-tasks">
+          <li>Téléchargement ISO et préparation VM</li>
+          <li>Installation et partitionnement (ZFS/UFS)</li>
+          <li>Attribution interfaces WAN/LAN en console</li>
+          <li>Accès WebGUI sur 192.168.1.1</li>
+          <li>Configuration réseau et assistant Setup Wizard</li>
+          <li>Mise à jour via System → Update</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TABLEAU DE SYNTHESE -->
+<section id="synthese">
+  <div class="section-inner">
+    <div class="section-tag">Récapitulatif</div>
+    <h2 class="section-title">Tableau de <em>synthèse</em></h2>
+    <div class="veille-card reveal">
+      <div class="veille-title">📊 Tableau de synthèse des compétences BTS SIO</div>
+      <div class="veille-desc">
+        Ce tableau de synthèse récapitule l'ensemble des compétences acquises et mises en œuvre dans le cadre du BTS SIO option SISR, à travers mes stages, projets et activités professionnelles.
+      </div>
+      <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2025/09/tableau-de-synthese-youcef.pdf" target="_blank" class="stage-report-link" style="margin-top:1.5rem; display:inline-flex;">
+        📄 Télécharger le tableau de synthèse (PDF)
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- PROJETS -->
 <section id="projets">
   <div class="section-inner">
@@ -800,7 +912,7 @@
 </section>
 
 <footer>
-  <p>© 2025 BENAMARY Youcef — BTS SIO SISR · Fait avec ❤️</p>
+  <p>© 2025 BENAMAR Youcef — BTS SIO SISR · Fait avec ❤️</p>
 </footer>
 
 <script>
