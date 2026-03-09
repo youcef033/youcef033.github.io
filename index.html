@@ -538,15 +538,16 @@
 
       <div class="stage-card reveal">
         <div class="stage-num">01</div>
-        <div class="stage-date">Stage · Développement Web</div>
-        <div class="stage-title">Développeur d'application web</div>
-        <div class="stage-company">📍 Entreprise — Paris, France</div>
+        <div class="stage-date">12 mai 2025 – 4 juillet 2025 · Développement</div>
+        <div class="stage-title">Hébergement & déploiement de services en ligne</div>
+        <div class="stage-company">📍 Passin Oswald Freelance — Combs-la-Ville (77)</div>
         <ul class="stage-tasks">
-          <li>Développement d'une application web (HTML/CSS/JS/PHP)</li>
-          <li>Gestion et requêtes en base de données SQL</li>
-          <li>Versioning avec Git</li>
-          <li>Rédaction de documentation technique</li>
-          <li>Intégration d'interfaces responsive</li>
+          <li>Tests techniques SQL, Python et QCM HTML/CSS/JS</li>
+          <li>Exercices Python : gestion de tableaux, algorithmique, mini-projet Sudoku</li>
+          <li>Installation d'une machine virtuelle et configuration SSH</li>
+          <li>Installation de Django et développement d'une première application web</li>
+          <li>Ajout de langues sur un site web hébergé sur Hostinger</li>
+          <li>Lecture de documentation et suivi des progrès hebdomadaires</li>
         </ul>
         <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="stage-report-link">
           📄 Rapport de stage
@@ -611,7 +612,6 @@
           <span class="tag">Python</span>
           <span class="tag">PHP</span>
           <span class="tag">SQL</span>
-          <span class="tag">Git</span>
         </div>
       </div>
 
@@ -643,7 +643,6 @@
           <span class="tag">SNMP</span>
           <span class="tag">SSH</span>
           <span class="tag">Pare-feu</span>
-          <span class="tag">Squid (proxy)</span>
         </div>
       </div>
 
@@ -781,13 +780,49 @@
         </ul>
       </div>
 
+      <div class="stage-card reveal">
+        <div class="stage-num">04</div>
+        <div class="stage-date">Système Linux</div>
+        <div class="stage-title">Installation Debian</div>
+        <div class="stage-company">Système d'exploitation serveur open-source</div>
+        <ul class="stage-tasks">
+          <li>Téléchargement de l'ISO Debian sur debian.org</li>
+          <li>Création de la VM (2 Go RAM, 20 Go disque, carte réseau)</li>
+          <li>Choix de la langue, du clavier (AZERTY) et du fuseau horaire</li>
+          <li>Partitionnement du disque (automatique ou manuel)</li>
+          <li>Création de l'utilisateur root et d'un utilisateur standard</li>
+          <li>Installation du système de base sans interface graphique</li>
+          <li>Activation des sudoers : <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">su - → visudo → user ALL=(ALL:ALL) ALL</code></li>
+          <li>Installation SSH : <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">sudo apt install openssh-server</code></li>
+          <li>Mise à jour du système : <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">sudo apt update && sudo apt upgrade -y</code></li>
+        </ul>
+      </div>
+
+      <div class="stage-card reveal">
+        <div class="stage-num">05</div>
+        <div class="stage-date">Administration Windows</div>
+        <div class="stage-title">Installation Active Directory</div>
+        <div class="stage-company">Sur Windows Server 2019/2022</div>
+        <ul class="stage-tasks">
+          <li>Installation de Windows Server et attribution d'une IP fixe</li>
+          <li>Renommer le serveur : <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">Paramètres → Système → Renommer ce PC</code></li>
+          <li>Ouvrir le Gestionnaire de serveur → Ajouter des rôles</li>
+          <li>Sélectionner <strong>Services AD DS</strong> puis installer</li>
+          <li>Promouvoir le serveur en contrôleur de domaine</li>
+          <li>Créer une nouvelle forêt : définir le nom de domaine (ex: mondomaine.local)</li>
+          <li>Définir le mot de passe DSRM et finaliser l'installation</li>
+          <li>Redémarrer le serveur</li>
+          <li>Créer des UO, utilisateurs et groupes via <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">Utilisateurs et ordinateurs Active Directory</code></li>
+          <li>Joindre un client Windows au domaine : <code style="background:rgba(0,212,255,0.08);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.8rem;">Système → Modifier → Domaine</code></li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- TABLEAU DE SYNTHESE -->
 <section id="synthese">
   <div class="section-inner">
     <div class="section-tag">Récapitulatif</div>
@@ -872,6 +907,61 @@
           <a href="descriptions_technique_glpi.pdf" target="_blank" class="stage-report-link">📄 Description technique GLPI (26/03/2025)</a>
           <a href="cahier_de_recette5.pdf" target="_blank" class="stage-report-link">📄 Cahier de recette (11/03/2025)</a>
         </div>
+      </div>
+    </div>
+
+    <!-- PROJET MAIRIE -->
+    <div style="background:var(--card); border:1px solid rgba(0,212,255,0.15); border-radius:16px; padding:2rem; margin-bottom:1.5rem; position:relative; overflow:hidden;" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6c63ff,#a78bfa);"></div>
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+        <div style="font-size:2rem;">🏛️</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;">Mairie de Maisons-Alfort</div>
+          <div style="font-size:0.78rem; color:#a78bfa; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;">Projet BTS SIO · avec un camarade de classe</div>
+        </div>
+        <div style="margin-left:auto; display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span class="stack-tag">Packet Tracer</span>
+          <span class="stack-tag">VLAN</span>
+          <span class="stack-tag">Réseau</span>
+          <span class="stack-tag">Cisco</span>
+        </div>
+      </div>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1.2rem; line-height:1.7;">
+        Conception et déploiement d'une infrastructure réseau pour la mairie de Maisons-Alfort. 
+        Modélisation et simulation de l'architecture avec Cisco Packet Tracer, gestion des VLANs et planification par sprints.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.8rem;">
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/Ap-mairie/Cahier des charges Maisons-Alfort Présentation.pdf" target="_blank" class="stage-report-link">📄 Cahier des charges</a>
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/Ap-mairie/sprint1.pdf" target="_blank" class="stage-report-link">📄 Sprint 1</a>
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/sprint1mairie.pdf" target="_blank" class="stage-report-link">📄 Sprint Global</a>
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/Ap-mairie/gnattMairie.png" target="_blank" class="stage-report-link">📊 Gantt</a>
+      </div>
+    </div>
+
+    <!-- PROJET DEVINE LE NOMBRE -->
+    <div style="background:var(--card); border:1px solid rgba(0,212,255,0.15); border-radius:16px; padding:2rem; position:relative; overflow:hidden;" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f59e0b,#ef4444);"></div>
+      <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap;">
+        <div style="font-size:2rem;">🎲</div>
+        <div>
+          <div style="font-family:'Syne',sans-serif; font-size:1.2rem; font-weight:800;">Devine le Nombre</div>
+          <div style="font-size:0.78rem; color:#f59e0b; font-weight:600; text-transform:uppercase; letter-spacing:0.08em;">Mini-projet web · avec un camarade de classe</div>
+        </div>
+        <div style="margin-left:auto; display:flex; flex-wrap:wrap; gap:0.4rem;">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">Apache</span>
+        </div>
+      </div>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1.2rem; line-height:1.7;">
+        Jeu de devinette interactif développé en HTML/CSS/JavaScript. 
+        L'utilisateur doit deviner un nombre généré aléatoirement côté client, avec indication si le nombre est trop grand ou trop petit. Déployé sur serveur Apache.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.8rem;">
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/AP-nombres/Cahier des Charges jeu devine le nombre.pdf" target="_blank" class="stage-report-link">📄 Cahier des charges</a>
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/AP-nombres/Documentation Technique projet devine le nombre.pdf" target="_blank" class="stage-report-link">📄 Doc technique</a>
+        <a href="https://itzazizo.github.io/PortfolioAziz/docmSio/AP-nombres/index.html" target="_blank" class="stage-report-link">🎮 Jouer au jeu</a>
       </div>
     </div>
 
