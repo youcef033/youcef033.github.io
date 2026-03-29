@@ -201,4 +201,309 @@
       width: 38px; height: 38px; flex-shrink: 0;
       background: rgba(0,212,255,0.08);
       border: 1px solid rgba(0,212,255,0.15);
-      border-radius
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .info-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+    .info-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+
+    /* ── TIMELINE (FORMATIONS) ── */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem; top: 6px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.2);
+      transform: translateX(-4px);
+    }
+    .timeline-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .timeline-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .timeline-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .timeline-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── CARDS (STAGES & SITUATIONS) ── */
+    #stage, #situations { background: var(--bg2); }
+    .stage-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .stage-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stage-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); box-shadow: var(--glow); }
+    .stage-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .stage-num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; color: rgba(0,212,255,0.08); line-height: 1; margin-bottom: 0.5rem; }
+    .stage-date { font-size: 0.75rem; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .stage-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .stage-company { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .stage-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .stage-tasks li {
+      font-size: 0.83rem; color: var(--muted);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .stage-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.8rem; }
+    .stage-report-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-size: 0.8rem; color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(0,212,255,0.2);
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .stage-report-link:hover { background: rgba(0,212,255,0.08); }
+
+    /* ── COMPÉTENCES ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.6rem;
+      transition: border-color 0.3s;
+    }
+    .skill-card:hover { border-color: rgba(0,212,255,0.25); }
+    .skill-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.2rem; }
+    .skill-icon {
+      width: 36px; height: 36px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .skill-category { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.06); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .profil-grid { grid-template-columns: 1fr; gap: 2rem; }
+      #accueil { padding: 7rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#accueil" class="nav-logo">YOUCEF.B</a>
+  <ul class="nav-links">
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#stage">Stages</a></li>
+    <li><a href="#situations">Situations</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="accueil">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">BTS SIO · Option SISR · 2ème année</div>
+    <h1 class="hero-name">BENAMAR<br><span>Youcef</span></h1>
+    <p class="hero-subtitle">Étudiant en informatique — Systèmes & Réseaux</p>
+    <p class="hero-desc">
+      Passionné par les infrastructures informatiques, les systèmes et les réseaux, je développe mes compétences techniques à travers ma formation BTS SIO SISR et mes stages en entreprise.
+    </p>
+    <div class="hero-actions">
+      <a href="#stage" class="btn btn-primary">📄 Voir mes stages</a>
+      <a href="#situations" class="btn btn-ghost">📂 Situations Pro</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="profil">
+  <div class="section-inner">
+    <div class="section-tag">Qui suis-je</div>
+    <h2 class="section-title">Mon <em>Profil</em></h2>
+    <div class="profil-grid reveal">
+      <div class="profil-text">
+        <p>Je m'appelle Youcef Benamar, étudiant en 2ème année de BTS SIO, spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).</p>
+        <p>Mon parcours m'a permis de toucher à la virtualisation, l'administration serveur et la cybersécurité. J'ai effectué deux stages marquants : un en développement web et un second plus orienté systèmes et réseaux.</p>
+      </div>
+      <div class="profil-info">
+        <div class="info-card">
+          <div class="info-icon">🎓</div>
+          <div><div class="info-label">Formation</div><div class="info-value">BTS SIO — Option SISR</div></div>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <div><div class="info-label">Localisation</div><div class="info-value">Paris, France</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="stage">
+  <div class="section-inner">
+    <div class="section-tag">Expériences</div>
+    <h2 class="section-title">Mes <em>Stages</em></h2>
+    <div class="stage-cards">
+      <div class="stage-card reveal">
+        <div class="stage-num">01</div>
+        <div class="stage-date">Mai – Juillet 2025</div>
+        <div class="stage-title">Déploiement de services web</div>
+        <div class="stage-company">📍 Passin Oswald Freelance</div>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="stage-report-link">📄 Rapport de stage</a>
+      </div>
+      <div class="stage-card reveal">
+        <div class="stage-num">02</div>
+        <div class="stage-date">Stage SISR</div>
+        <div class="stage-title">Administration systèmes & réseaux</div>
+        <div class="stage-company">📍 Entreprise — Paris</div>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport.pdf" target="_blank" class="stage-report-link">📄 Rapport de stage</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="situations">
+  <div class="section-inner">
+    <div class="section-tag">BTS SIO</div>
+    <h2 class="section-title">Situations <em>Professionnelles</em></h2>
+    <div class="stage-cards">
+      
+      <div class="stage-card reveal">
+        <div class="stage-num">01</div>
+        <div class="stage-date">SISR · Inventaire & GPO</div>
+        <div class="stage-title">Déploiement d'agents GLPI</div>
+        <div class="stage-company">Lycée Turgot</div>
+        <ul class="stage-tasks">
+          <li>Installation serveur GLPI sur Debian 13</li>
+          <li>Déploiement automatique via GPO Windows Server</li>
+          <li>Inventaire centralisé du parc informatique</li>
+        </ul>
+        <a href="Situation pro 1.pdf" target="_blank" class="stage-report-link">
+          📄 Voir la fiche (PDF)
+        </a>
+      </div>
+
+      <div class="stage-card reveal">
+        <div class="stage-num">02</div>
+        <div class="stage-date">SISR · Sécurité Réseau</div>
+        <div class="stage-title">Portail Captif pfSense</div>
+        <div class="stage-company">Lycée Turgot</div>
+        <ul class="stage-tasks">
+          <li>Contrôle et authentification des accès</li>
+          <li>Configuration des règles de filtrage firewall</li>
+          <li>Gestion des sessions et bande passante</li>
+        </ul>
+        <a href="Situation pro 2.pdf" target="_blank" class="stage-report-link">
+          📄 Voir la fiche (PDF)
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="competences">
+  <div class="section-inner">
+    <div class="section-tag">Savoir-faire</div>
+    <h2 class="section-title">Mes <em>Compétences</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-header"><div class="skill-icon">🖥️</div><div class="skill-category">Systèmes</div></div>
+        <div class="skill-tags">
+          <span class="tag">Linux</span><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">GLPI</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-header"><div class="skill-icon">🌐</div><div class="skill-category">Réseaux</div></div>
+        <div class="skill-tags">
+          <span class="tag">pfSense</span><span class="tag">VLAN</span><span class="tag">VPN</span><span class="tag">TCP/IP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-inner">
+    <h2 class="section-title">Me <em>Contacter</em></h2>
+    <div class="contact-links">
+      <a href="mailto:contact@youcef.com" class="contact-link">📧 Email</a>
+      <a href="https://linkedin.com" class="contact-link">💼 LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 BENAMAR Youcef — BTS SIO SISR</p>
+</footer>
+
+<script>
+  // Animation au scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
