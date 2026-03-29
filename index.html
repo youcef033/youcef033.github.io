@@ -64,6 +64,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); }
 
     /* ── HERO ── */
     #accueil {
@@ -235,8 +236,8 @@
     .timeline-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.6rem; }
     .timeline-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
 
-    /* ── CARDS (STAGES & SITUATIONS) ── */
-    #stage, #situations { background: var(--bg2); }
+    /* ── CARDS (STAGES) ── */
+    #stage { background: var(--bg2); }
     .stage-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .stage-card {
       background: var(--card);
@@ -309,201 +310,330 @@
     }
     .tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.06); }
 
+    /* ── CONTACT & FOOTER ── */
+    #contact { background: var(--bg2); padding-bottom: 8rem; }
+    .contact-links { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-top: 1rem; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.8rem 1.4rem; border-radius: 10px;
+      color: var(--text); text-decoration: none;
+      font-size: 0.9rem; transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    footer {
+      padding: 3rem; text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.85rem;
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                  transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+      nav { padding: 1.1rem 1.5rem; }
       .nav-links { display: none; }
       section { padding: 4rem 1.5rem; }
-      .profil-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .profil-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       #accueil { padding: 7rem 1.5rem 3rem; }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="#accueil" class="nav-logo">YOUCEF.B</a>
-  <ul class="nav-links">
-    <li><a href="#profil">Profil</a></li>
-    <li><a href="#formations">Formations</a></li>
-    <li><a href="#stage">Stages</a></li>
-    <li><a href="#situations">Situations</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="#accueil" class="nav-logo">YOUCEF.B</a>
+    <ul class="nav-links">
+      <li><a href="#profil">Profil</a></li>
+      <li><a href="#formations">Formations</a></li>
+      <li><a href="#stage">Stages</a></li>
+      <li><a href="#situations">Situations</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<section id="accueil">
-  <div class="hero-grid"></div>
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">BTS SIO · Option SISR · 2ème année</div>
-    <h1 class="hero-name">BENAMAR<br><span>Youcef</span></h1>
-    <p class="hero-subtitle">Étudiant en informatique — Systèmes & Réseaux</p>
-    <p class="hero-desc">
-      Passionné par les infrastructures informatiques, les systèmes et les réseaux, je développe mes compétences techniques à travers ma formation BTS SIO SISR et mes stages en entreprise.
-    </p>
-    <div class="hero-actions">
-      <a href="#stage" class="btn btn-primary">📄 Voir mes stages</a>
-      <a href="#situations" class="btn btn-ghost">📂 Situations Pro</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<section id="profil">
-  <div class="section-inner">
-    <div class="section-tag">Qui suis-je</div>
-    <h2 class="section-title">Mon <em>Profil</em></h2>
-    <div class="profil-grid reveal">
-      <div class="profil-text">
-        <p>Je m'appelle Youcef Benamar, étudiant en 2ème année de BTS SIO, spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).</p>
-        <p>Mon parcours m'a permis de toucher à la virtualisation, l'administration serveur et la cybersécurité. J'ai effectué deux stages marquants : un en développement web et un second plus orienté systèmes et réseaux.</p>
+  <section id="accueil">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-tag">BTS SIO · Option SISR · 2ème année</div>
+      <h1 class="hero-name">BENAMAR<br><span>Youcef</span></h1>
+      <p class="hero-subtitle">Étudiant en informatique — Systèmes & Réseaux</p>
+      <p class="hero-desc">
+        Passionné par les infrastructures informatiques, les systèmes et les réseaux, je développe mes compétences techniques à travers ma formation BTS SIO SISR et mes stages en entreprise.
+      </p>
+      <div class="hero-actions">
+        <a href="#stage" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Voir mes stages
+        </a>
+        <a href="#contact" class="btn btn-ghost">Me contacter</a>
       </div>
-      <div class="profil-info">
-        <div class="info-card">
-          <div class="info-icon">🎓</div>
-          <div><div class="info-label">Formation</div><div class="info-value">BTS SIO — Option SISR</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="profil">
+    <div class="section-inner">
+      <div class="section-tag">Qui suis-je</div>
+      <h2 class="section-title">Mon <em>Profil</em></h2>
+      <div class="profil-grid reveal">
+        <div class="profil-text">
+          <p>Je m'appelle Youcef Benamar, étudiant en 2ème année de BTS SIO, spécialité SISR (Solutions d'Infrastructure, Systèmes et Réseaux).</p>
+          <p>Mon parcours m'a permis de toucher à la virtualisation, l'administration serveur et la cybersécurité. J'ai effectué deux stages marquants : un en développement web et un second plus orienté systèmes et réseaux.</p>
+          <p>Rigoureux et curieux, j'aime comprendre le fonctionnement interne des infrastructures pour mieux les optimiser et les sécuriser.</p>
         </div>
-        <div class="info-card">
-          <div class="info-icon">📍</div>
-          <div><div class="info-label">Localisation</div><div class="info-value">Paris, France</div></div>
+        <div class="profil-info">
+          <div class="info-card">
+            <div class="info-icon">🎓</div>
+            <div>
+              <div class="info-label">Formation</div>
+              <div class="info-value">BTS SIO — Option SISR</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-label">Localisation</div>
+              <div class="info-value">Paris, France</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⚡</div>
+            <div>
+              <div class="info-label">Spécialité</div>
+              <div class="info-value">Administration Systèmes & Réseaux</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<section id="stage">
-  <div class="section-inner">
-    <div class="section-tag">Expériences</div>
-    <h2 class="section-title">Mes <em>Stages</em></h2>
-    <div class="stage-cards">
-      <div class="stage-card reveal">
-        <div class="stage-num">01</div>
-        <div class="stage-date">Mai – Juillet 2025</div>
-        <div class="stage-title">Déploiement de services web</div>
-        <div class="stage-company">📍 Passin Oswald Freelance</div>
-        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="stage-report-link">📄 Rapport de stage</a>
-      </div>
-      <div class="stage-card reveal">
-        <div class="stage-num">02</div>
-        <div class="stage-date">Stage SISR</div>
-        <div class="stage-title">Administration systèmes & réseaux</div>
-        <div class="stage-company">📍 Entreprise — Paris</div>
-        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport.pdf" target="_blank" class="stage-report-link">📄 Rapport de stage</a>
+  <section id="formations">
+    <div class="section-inner">
+      <div class="section-tag">Parcours académique</div>
+      <h2 class="section-title">Mes <em>Formations</em></h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2024 — Présent</div>
+          <h3 class="timeline-title">BTS SIO Option SISR</h3>
+          <div class="timeline-sub">Lycée Turgot, Paris</div>
+          <p class="timeline-desc">Spécialisation dans les infrastructures, le déploiement de services réseaux, la cybersécurité et l'administration système Linux/Windows.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2023 — 2024</div>
+          <h3 class="timeline-title">L1 Informatique</h3>
+          <div class="timeline-sub">Université Paris Cité</div>
+          <p class="timeline-desc">Bases de l'algorithmique, programmation impérative et fondamentaux des systèmes informatiques.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">2023</div>
+          <h3 class="timeline-title">Baccalauréat Général</h3>
+          <div class="timeline-sub">Spécialités Mathématiques & NSI</div>
+          <p class="timeline-desc">Obtention du bac avec une spécialisation forte en sciences numériques.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <div class="divider"></div>
 
-<section id="situations">
-  <div class="section-inner">
-    <div class="section-tag">BTS SIO</div>
-    <h2 class="section-title">Situations <em>Professionnelles</em></h2>
-    <div class="stage-cards">
-      
-      <div class="stage-card reveal">
-        <div class="stage-num">01</div>
-        <div class="stage-date">SISR · Inventaire & GPO</div>
-        <div class="stage-title">Déploiement d'agents GLPI</div>
-        <div class="stage-company">Lycée Turgot</div>
-        <ul class="stage-tasks">
-          <li>Installation serveur GLPI sur Debian 13</li>
-          <li>Déploiement automatique via GPO Windows Server</li>
-          <li>Inventaire centralisé du parc informatique</li>
-        </ul>
-        <a href="Situation pro 1.pdf" target="_blank" class="stage-report-link">
-          📄 Voir la fiche (PDF)
+  <section id="stage">
+    <div class="section-inner">
+      <div class="section-tag">Expériences</div>
+      <h2 class="section-title">Mes <em>Stages</em></h2>
+      <div class="stage-cards">
+        <div class="stage-card reveal">
+          <div class="stage-num">01</div>
+          <div class="stage-date">Mai – Juillet 2025</div>
+          <h3 class="stage-title">Déploiement de services web</h3>
+          <div class="stage-company">📍 Passin Oswald Freelance</div>
+          <ul class="stage-tasks">
+            <li>Mise en place d'environnements de développement</li>
+            <li>Configuration de serveurs web</li>
+            <li>Optimisation des performances</li>
+          </ul>
+        </div>
+        <div class="stage-card reveal">
+          <div class="stage-num">02</div>
+          <div class="stage-date">Janvier – Février 2026</div>
+          <h3 class="stage-title">Administration systèmes & réseaux</h3>
+          <div class="stage-company">📍 Entreprise SISR</div>
+          <ul class="stage-tasks">
+            <li>Maintenance du parc informatique</li>
+            <li>Configuration de switchs et VLANs</li>
+            <li>Support utilisateur de niveau 1 et 2</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="situations" style="background: var(--bg2);">
+    <div class="section-inner">
+      <div class="section-tag">BTS SIO SISR</div>
+      <h2 class="section-title">Situations <em>Professionnelles</em></h2>
+      <div class="stage-cards">
+        
+        <div class="stage-card reveal">
+          <div class="stage-num">01</div>
+          <div class="stage-date">SISR · Inventaire & GPO</div>
+          <h3 class="stage-title">Déploiement d'agents GLPI</h3>
+          <div class="stage-company">Lycée Turgot</div>
+          <ul class="stage-tasks">
+            <li>Installation serveur GLPI sur Debian 13</li>
+            <li>Déploiement automatique via GPO Windows Server</li>
+            <li>Inventaire centralisé du parc informatique</li>
+          </ul>
+          <a href="Situation pro 1.pdf" target="_blank" class="stage-report-link">
+            📄 Voir la fiche (PDF)
+          </a>
+        </div>
+
+        <div class="stage-card reveal">
+          <div class="stage-num">02</div>
+          <div class="stage-date">SISR · Sécurité Réseau</div>
+          <h3 class="stage-title">Portail Captif pfSense</h3>
+          <div class="stage-company">Lycée Turgot</div>
+          <ul class="stage-tasks">
+            <li>Contrôle et authentification des accès</li>
+            <li>Configuration des règles de filtrage firewall</li>
+            <li>Gestion des sessions et bande passante</li>
+          </ul>
+          <a href="Situation pro 2.pdf" target="_blank" class="stage-report-link">
+            📄 Voir la fiche (PDF)
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="competences">
+    <div class="section-inner">
+      <div class="section-tag">Savoir-faire</div>
+      <h2 class="section-title">Mes <em>Compétences</em></h2>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-header">
+            <div class="skill-icon">🖥️</div>
+            <h3 class="skill-category">Systèmes</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Linux (Debian/Ubuntu)</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">Virtualisation (Proxmox/ESXi)</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-header">
+            <div class="skill-icon">🌐</div>
+            <h3 class="skill-category">Réseaux</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Cisco (CCNA bases)</span>
+            <span class="tag">VLAN & Routage</span>
+            <span class="tag">pfSense (Firewall)</span>
+            <span class="tag">Services (DHCP, DNS)</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-header">
+            <div class="skill-icon">🛡️</div>
+            <h3 class="skill-category">Cybersécurité</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="tag">Hardening OS</span>
+            <span class="tag">VPN (OpenVPN/Wireguard)</span>
+            <span class="tag">Gestion des Logs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <div class="section-inner">
+      <div class="section-tag">Contact</div>
+      <h2 class="section-title">Me <em>Contacter</em></h2>
+      <div class="contact-links">
+        <a href="mailto:contact@youcef.com" class="contact-link">
+          📧 Email
+        </a>
+        <a href="https://benamaryoucef.wordpress.com/linkedin/" target="_blank" class="contact-link">
+          💼 LinkedIn
+        </a>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport_stage_youcef.pdf" target="_blank" class="contact-link">
+          📄 Rapport de stage 1
+        </a>
+        <a href="https://benamaryoucef.wordpress.com/wp-content/uploads/2026/02/rapport.pdf" target="_blank" class="contact-link">
+          📄 Rapport de stage 2
+        </a>
+        <a href="https://benamaryoucef.wordpress.com" target="_blank" class="contact-link">
+          🌐 e-Portfolio WordPress
         </a>
       </div>
-
-      <div class="stage-card reveal">
-        <div class="stage-num">02</div>
-        <div class="stage-date">SISR · Sécurité Réseau</div>
-        <div class="stage-title">Portail Captif pfSense</div>
-        <div class="stage-company">Lycée Turgot</div>
-        <ul class="stage-tasks">
-          <li>Contrôle et authentification des accès</li>
-          <li>Configuration des règles de filtrage firewall</li>
-          <li>Gestion des sessions et bande passante</li>
-        </ul>
-        <a href="Situation pro 2.pdf" target="_blank" class="stage-report-link">
-          📄 Voir la fiche (PDF)
-        </a>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <footer>
+    <p>© 2025 BENAMAR Youcef — BTS SIO SISR · Fait avec ❤️</p>
+  </footer>
 
-<section id="competences">
-  <div class="section-inner">
-    <div class="section-tag">Savoir-faire</div>
-    <h2 class="section-title">Mes <em>Compétences</em></h2>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-header"><div class="skill-icon">🖥️</div><div class="skill-category">Systèmes</div></div>
-        <div class="skill-tags">
-          <span class="tag">Linux</span><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">GLPI</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-header"><div class="skill-icon">🌐</div><div class="skill-category">Réseaux</div></div>
-        <div class="skill-tags">
-          <span class="tag">pfSense</span><span class="tag">VLAN</span><span class="tag">VPN</span><span class="tag">TCP/IP</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  <script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-<section id="contact">
-  <div class="section-inner">
-    <h2 class="section-title">Me <em>Contacter</em></h2>
-    <div class="contact-links">
-      <a href="mailto:contact@youcef.com" class="contact-link">📧 Email</a>
-      <a href="https://linkedin.com" class="contact-link">💼 LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 BENAMAR Youcef — BTS SIO SISR</p>
-</footer>
-
-<script>
-  // Animation au scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+    // Smooth active nav
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop;
+        if (pageYOffset >= top - 100) current = s.getAttribute('id');
+      });
+      navLinks.forEach(l => {
+        l.classList.remove('active');
+        if (l.getAttribute('href') === `#${current}`) l.classList.add('active');
+      });
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+  </script>
 
 </body>
 </html>
